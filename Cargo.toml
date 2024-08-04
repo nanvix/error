@@ -1,0 +1,14 @@
+# Copyright(c) The Maintainers of Nanvix.
+# Licensed under the MIT License.
+
+[package]
+name = "error"
+version = "0.0.1"
+license-file = "LICENSE.txt"
+edition = "2021"
+authors = ["The Maintainers of Nanvix"]
+description = "Error Codes for POSIX Systems"
+homepage = "https://github.com/nanvix"
+
+[lib]
+crate-type = ["lib"]
