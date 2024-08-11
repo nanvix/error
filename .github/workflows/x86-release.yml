@@ -1,7 +1,7 @@
 # Copyright(c) The Maintainers of Nanvix.
 # Licensed under the MIT License.
 
-name: Build
+name: x86 Release
 
 on: push
 
@@ -23,8 +23,8 @@ jobs:
         port: ${{ secrets.portnum }}
         envs: TARGET_BRANCH
         script: |
-          rm -rf error
-          git clone --recursive https://github.com/nanvix/error.git --branch ${TARGET_BRANCH}
+          rm -rf error-release
+          git clone --recursive https://github.com/nanvix/error.git --branch ${TARGET_BRANCH} error-release
 
   build:
     name: Build
@@ -40,8 +40,8 @@ jobs:
         port: ${{ secrets.portnum }}
         script: |
           source "$HOME/.cargo/env"
-          cd error
-          cargo build --verbose
+          cd error-release
+          cargo build --release
 
   cleanup:
     name: Cleanup
@@ -57,7 +57,7 @@ jobs:
         key: ${{ secrets.sshkey }}
         port: ${{ secrets.portnum }}
         script: |
-          cd error
+          cd error-release
           git checkout --force dev
           git clean -fdx
           git remote prune origin
